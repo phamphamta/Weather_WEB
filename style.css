@@ -1,0 +1,273 @@
+:root {
+    /* Định nghĩa các biến màu sắc để sử dụng trong toàn bộ ứng dụng */
+    --main-bg-color: linear-gradient(135deg, #1D2671, #C33764); /* Màu nền chính */
+    --button-bg-color: #debff4; /* Màu nền cho nút */
+    --button-hover-bg-color: #8b48d7; /* Màu nền khi hover trên nút */
+    --text-color: #fff; /* Màu chữ chính */
+}
+
+body {
+    /* Cài đặt giao diện cho body */
+    background: var(--main-bg-color); /* Sử dụng màu nền từ biến */
+    background-size: 200% 200%; /* Kích thước nền để tạo hiệu ứng chuyển động */
+    animation: gradientAnimation 10s ease infinite; /* Hiệu ứng chuyển động nền */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font chữ */
+    display: flex; /* Sử dụng flexbox để căn giữa */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    min-height: 100vh; /* Chiều cao tối thiểu bằng chiều cao viewport */
+    margin: 0; /* Xóa margin mặc định */
+    padding: 10px; /* Padding cho body */
+}
+
+/* Định nghĩa hoạt ảnh cho nền chuyển động */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; } /* Vị trí bắt đầu */
+    50% { background-position: 100% 50%; } /* Vị trí giữa */
+    100% { background-position: 0% 50%; } /* Vị trí kết thúc */
+}
+
+/* Định kiểu cho tiêu đề, nhãn và đoạn văn */
+h2, label, p {
+    color: var(--text-color); /* Sử dụng màu chữ từ biến */
+    margin: 8px 0; /* Margin trên và dưới */
+}
+
+/* Định kiểu cho ô nhập liệu */
+input {
+    width: 100%; /* Chiều rộng 100% */
+    padding: 10px; /* Padding cho ô nhập */
+    font-size: 20px; /* Kích thước chữ */
+    box-sizing: border-box; /* Tính toán kích thước bao gồm padding và border */
+    border-radius: 10px; /* Bo tròn góc */
+    border: 1px solid white; /* Đường viền trắng */
+    margin-top: 20px; /* Khoảng cách trên */
+    outline: none; /* Bỏ đường viền khi được chọn */
+}
+
+/* Định kiểu cho nút */
+button {
+    background: #e0aaff; /* Màu nền pastel */
+    color: #000; /* Màu chữ tối */
+    padding: 12px; /* Padding cho nút */
+    border: none; /* Bỏ đường viền */
+    border-radius: 10px; /* Bo tròn góc */
+    cursor: pointer; /* Hiển thị con trỏ khi di chuột */
+    margin-top: 20px; /* Khoảng cách trên */
+    width: 100%; /* Chiều rộng 100% */
+    font-size: 23px; /* Kích thước chữ */
+    transition: transform 0.2s ease, background 0.2s ease; /* Hiệu ứng chuyển động khi hover */
+}
+
+/* Định kiểu cho nút khi hover */
+button:hover {
+    background: #d1c4e9; /* Màu nền khi hover */
+    transform: scale(1.05); /* Tăng kích thước một chút khi hover */
+}
+
+/* Định kiểu cho phần hiển thị nhiệt độ */
+#temp-div p {
+    font-size: 50px; /* Kích thước chữ lớn */
+    margin-top: -20px; /* Khoảng cách trên âm để tạo hiệu ứng */
+}
+
+/* Định kiểu cho thông tin thời tiết */
+#weather-info {
+    font-size: 20px; /* Kích thước chữ */
+}
+
+/* Định kiểu cho biểu tượng thời tiết */
+#weather-icon {
+    width: 250px; /* Chiều rộng cố định */
+    height: 250px; /* Chiều cao cố định */
+    margin: 20px auto; /* Căn giữa theo chiều ngang */
+    display: none; /* Ẩn mặc định */
+    opacity: 0; /* Độ mờ ban đầu */
+    transform: scale(0.8); /* Tỷ lệ ban đầu */
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Hiệu ứng chuyển đổi */
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8)); /* Đổ bóng */
+}
+
+/* Định kiểu cho biểu tượng khi hiển thị */
+#weather-icon.show {
+    opacity: 1; /* Độ mờ khi hiển thị */
+    transform: scale(1); /* Tỷ lệ khi hiển thị */
+}
+
+/* Định kiểu cho phần dự báo theo giờ */
+#hourly-forecast {
+    margin-top: 30px; /* Khoảng cách trên */
+    display: flex; /* Sử dụng flexbox */
+    overflow-x: auto; /* Cuộn ngang nếu cần */
+    white-space: nowrap; /* Không xuống dòng */
+    gap: 10px; /* Khoảng cách giữa các phần tử */
+}
+
+/* Định kiểu cho mỗi mục dự báo theo giờ */
+.hourly-item {
+    flex: 0 0 auto; /* Không co giãn */
+    width: 80px; /* Chiều rộng cố định */
+    display: flex; /* Sử dụng flexbox */
+    flex-direction: column; /* Xếp theo chiều dọc */
+    align-items: center; /* Căn giữa theo chiều ngang */
+    padding: 8px; /* Padding cho mỗi mục */
+    border-radius: 10px; /* Bo tròn góc */
+    background: rgba(255, 255, 255, 0.2); /* Nền trong suốt */
+}
+
+/* Định kiểu cho hình ảnh trong dự báo theo giờ */
+.hourly-item img {
+    width: 40px; /* Chiều rộng cố định */
+    height: 40px; /* Chiều cao cố định */
+}
+
+/* Định kiểu cho phần trạng thái tải */
+#loading {
+    color: var(--text-color); /* Màu chữ từ biến */
+    font-size: 20px; /* Kích thước chữ */
+    margin-top: 10px; /* Khoảng cách trên */
+    display: none; /* Ẩn mặc định */
+    flex-direction: column; /* Xếp theo chiều dọc */
+    align-items: center; /* Căn giữa theo chiều ngang */
+}
+
+/* Định kiểu cho vòng tròn tải */
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3); /* Đường viền trong suốt */
+    border-top-color: #fff; /* Màu đường viền trên cùng */
+    border-radius: 50%; /* Hình tròn */
+    width: 40px; /* Chiều rộng cố định */
+    height: 40px; /* Chiều cao cố định */
+    animation: spin 1s linear infinite; /* Hiệu ứng xoay */
+}
+
+/* Định nghĩa hoạt ảnh xoay */
+@keyframes spin {
+    0% { transform: rotate(0deg); } /* Vòng xoay bắt đầu */
+    100% { transform: rotate(360deg); } /* Vòng xoay kết thúc */
+}
+
+/* Định kiểu cho container thời tiết */
+#weather-container {
+    position: relative; /* Đặt vị trí tương đối */
+    background: rgba(255, 255, 255, 0.3); /* Nền trong suốt */
+    max-width: 500px; /* Chiều rộng tối đa */
+    width: 100%; /* Chiều rộng 100% */
+    padding: 20px; /* Padding cho container */
+    border-radius: 15px; /* Bo tròn góc */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+    backdrop-filter: blur(10px); /* Làm mờ nền */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Đường viền trong suốt */
+    text-align: center; /* Căn giữa văn bản */
+    margin: 0 auto; /* Căn giữa container */
+}
+
+/* Định kiểu cho màn hình nhỏ */
+@media (max-width: 600px) {
+    #weather-container {
+        max-width: 90%; /* Chiều rộng tối đa 90% */
+        padding: 15px; /* Padding cho container */
+    }
+
+    h2 {
+        font-size: 20px; /* Kích thước chữ tiêu đề */
+    }
+
+    input {
+        font-size: 14px; /* Kích thước chữ ô nhập */
+        padding: 8px; /* Padding cho ô nhập */
+    }
+
+    button {
+        font-size: 14px; /* Kích thước chữ nút */
+        padding: 10px; /* Padding cho nút */
+    }
+
+    #temp-div p {
+        font-size: 40px; /* Kích thước chữ nhiệt độ */
+    }
+
+    #weather-icon {
+        width: 120px; /* Chiều rộng biểu tượng */
+        height: 120px; /* Chiều cao biểu tượng */
+    }
+
+    .hourly-item {
+        width: 70px; /* Chiều rộng mỗi mục dự báo */
+        font-size: 14px; /* Kích thước chữ mỗi mục */
+    }
+
+    .hourly-item img {
+        width: 30px; /* Chiều rộng hình ảnh mỗi mục */
+        height: 30px; /* Chiều cao hình ảnh mỗi mục */
+    }
+}
+
+/* Định kiểu cho các lớp thời tiết */
+.rain {
+    background: linear-gradient(135deg, #545ca4, #4A569D); /* Nền cho mưa */
+}
+
+.snow {
+    background: linear-gradient(135deg, #ac9797, #bcafaf); /* Nền cho tuyết */
+}
+
+.thunderstorm {
+    background: linear-gradient(135deg, #000033, #1A1A40); /* Nền cho bão */
+}
+
+.clear {
+    background: linear-gradient(135deg, #A1C4FD, #c69c58); /* Nền cho trời quang */
+}
+
+.clouds {
+    background: linear-gradient(135deg, #546579, #D3D3D3); /* Nền cho mây */
+}
+
+/* Định kiểu cho tiêu đề làm mới */
+#refresh-title {
+    cursor: pointer; /* Hiển thị con trỏ khi di chuột */
+    transition: color 0.3s ease; /* Hiệu ứng chuyển đổi màu */
+}
+
+/* Định kiểu cho tiêu đề khi hover */
+#refresh-title:hover {
+    color: #FFD700; /* Màu vàng ánh kim khi hover */
+}
+
+/* Định kiểu cho thông tin thời tiết */
+.weather-details {
+    display: flex; /* Sử dụng flexbox */
+    justify-content: space-around; /* Căn giữa các mục */
+    margin-top: 10px; /* Khoảng cách trên */
+}
+
+/* Định kiểu cho thông tin thời tiết chi tiết */
+.weather-info {
+    display: flex; /* Sử dụng flexbox */
+    flex-direction: column; /* Xếp theo chiều dọc */
+    align-items: center; /* Căn giữa theo chiều ngang */
+    color: #fff; /* Màu chữ trắng */
+}
+
+/* Định kiểu cho biểu tượng thời tiết trong thông tin thời tiết */
+.weather-info i {
+    font-size: 24px; /* Kích thước biểu tượng */
+}
+
+/* Định kiểu cho phần hiển thị ngày */
+#date-div {
+    color: #fff; /* Màu chữ trắng */
+    font-size: 18px; /* Kích thước chữ */
+    margin-top: 10px; /* Khoảng cách trên */
+    margin-bottom: 18px; /* Khoảng cách dưới */
+    text-align: center; /* Căn giữa văn bản */
+}
+
+/* Định kiểu cho tiêu đề dự báo theo giờ */
+#hourly-heading {
+    color: var(--text-color); /* Màu chữ từ biến */
+    margin-top: 10px; /* Khoảng cách trên */
+    font-weight: normal; /* Độ đậm chữ bình thường */
+    display: none; /* Ẩn tiêu đề mặc định */
+}
